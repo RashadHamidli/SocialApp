@@ -11,7 +11,6 @@ import com.company.entity.User;
  * @author mr_rashad
  */
 public class Config {
-
     public static User loggedInUser;
 
 }

@@ -22,16 +22,17 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        initComponents();
         loggedInUser = userDao.getById(1);
+        initComponents();
         fillUserComponent();
         detailsPanel.fillUserComponent();
         profilePanel.fillUserComponent();
+        skillsPanel.fillUserComponent();
 
     }
 
     private void fillUserComponent() {
-        User user=Config.loggedInUser;
+        User user = Config.loggedInUser;
         txtName.setText(loggedInUser.getName());
         txtSurname.setText(loggedInUser.getSurname());
     }
@@ -119,7 +120,7 @@ public class Main extends javax.swing.JFrame {
         historyPanel.setLayout(historyPanelLayout);
         historyPanelLayout.setHorizontalGroup(
             historyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
+            .addGap(0, 471, Short.MAX_VALUE)
         );
         historyPanelLayout.setVerticalGroup(
             historyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,18 +128,6 @@ public class Main extends javax.swing.JFrame {
         );
 
         tbPanel.addTab("History", historyPanel);
-
-        javax.swing.GroupLayout skillsPanelLayout = new javax.swing.GroupLayout(skillsPanel);
-        skillsPanel.setLayout(skillsPanelLayout);
-        skillsPanelLayout.setHorizontalGroup(
-            skillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
-        );
-        skillsPanelLayout.setVerticalGroup(
-            skillsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
-        );
-
         tbPanel.addTab("Skills", skillsPanel);
         tbPanel.addTab("Detail", detailsPanel);
 
@@ -177,6 +166,7 @@ public class Main extends javax.swing.JFrame {
 
         profilePanel.fillUser(user);
         detailsPanel.fillUser(user);
+        skillsPanel.fillWindow();
 
         loggedInUser.setName(name);
         loggedInUser.setSurname(surname);
