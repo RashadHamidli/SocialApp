@@ -3,15 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>2620</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2634</IntrospectionStateNumber>
       <ServerVersion>16.1</ServerVersion>
       <StartupTime>1711086159</StartupTime>
       <TimeZones>true ACDT
@@ -853,7 +845,7 @@ false Zulu
 13452||10|C|G
 13452||-9223372036854775808|U|G
 13452||10|U|G</Grants>
-      <IntrospectionStateNumber>2620</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2634</IntrospectionStateNumber>
       <ObjectId>51324</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4288,8 +4280,8 @@ false Zulu
     <schema id="278" parent="13" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2620</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-03-22.15:58:45</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>2634</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-03-22.16:21:55</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4328,25 +4320,25 @@ false Zulu
     </sequence>
     <table id="283" parent="278" name="comments">
       <ObjectId>51477</ObjectId>
-      <StateNumber>2610</StateNumber>
+      <StateNumber>2627</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="284" parent="278" name="likes">
       <ObjectId>51486</ObjectId>
-      <StateNumber>2611</StateNumber>
+      <StateNumber>2629</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="285" parent="278" name="posts">
       <ObjectId>51493</ObjectId>
-      <StateNumber>2612</StateNumber>
+      <StateNumber>2627</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="286" parent="278" name="users">
       <ObjectId>51502</ObjectId>
-      <StateNumber>2613</StateNumber>
+      <StateNumber>2628</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4372,7 +4364,35 @@ false Zulu
       <StateNumber>2610</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <index id="290" parent="283" name="comments_pkey">
+    <column id="290" parent="283" name="post_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>2621</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="291" parent="283" name="user_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>2622</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="292" parent="283" name="fkh4c7lvsc298whoyd4w9ta25cr">
+      <ColNames>post_id</ColNames>
+      <ObjectId>51514</ObjectId>
+      <StateNumber>2627</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51493</RefTableId>
+    </foreign-key>
+    <foreign-key id="293" parent="283" name="fk8omq0tc18jd43bu5tjh6jvraq">
+      <ColNames>user_id</ColNames>
+      <ObjectId>51519</ObjectId>
+      <StateNumber>2628</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51502</RefTableId>
+    </foreign-key>
+    <index id="294" parent="283" name="comments_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51483</ObjectId>
@@ -4381,14 +4401,14 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="291" parent="283" name="comments_pkey">
+    <key id="295" parent="283" name="comments_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51484</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2610</StateNumber>
       <UnderlyingIndexId>51483</UnderlyingIndexId>
     </key>
-    <column id="292" parent="284" name="id">
+    <column id="296" parent="284" name="id">
       <DasType>bigint|0s</DasType>
       <DefaultExpression>nextval(&apos;likes_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4397,7 +4417,49 @@ false Zulu
       <SequenceId>51485</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <index id="293" parent="284" name="likes_pkey">
+    <column id="297" parent="284" name="comment_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>2623</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="298" parent="284" name="post_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>2624</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="299" parent="284" name="user_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>2625</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="300" parent="284" name="fke4guax66lb963pf27kvm7ikik">
+      <ColNames>comment_id</ColNames>
+      <ObjectId>51524</ObjectId>
+      <StateNumber>2629</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51477</RefTableId>
+    </foreign-key>
+    <foreign-key id="301" parent="284" name="fkry8tnr4x2vwemv2bb0h5hyl0x">
+      <ColNames>post_id</ColNames>
+      <ObjectId>51529</ObjectId>
+      <StateNumber>2630</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51493</RefTableId>
+    </foreign-key>
+    <foreign-key id="302" parent="284" name="fknvx9seeqqyy71bij291pwiwrg">
+      <ColNames>user_id</ColNames>
+      <ObjectId>51534</ObjectId>
+      <StateNumber>2631</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51502</RefTableId>
+    </foreign-key>
+    <index id="303" parent="284" name="likes_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51490</ObjectId>
@@ -4406,14 +4468,14 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="294" parent="284" name="likes_pkey">
+    <key id="304" parent="284" name="likes_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51491</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2611</StateNumber>
       <UnderlyingIndexId>51490</UnderlyingIndexId>
     </key>
-    <column id="295" parent="285" name="id">
+    <column id="305" parent="285" name="id">
       <DasType>bigint|0s</DasType>
       <DefaultExpression>nextval(&apos;posts_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4422,20 +4484,34 @@ false Zulu
       <SequenceId>51492</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="296" parent="285" name="create_date">
+    <column id="306" parent="285" name="create_date">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2612</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="297" parent="285" name="text">
+    <column id="307" parent="285" name="text">
       <DasType>text|0s</DasType>
       <Position>3</Position>
       <StateNumber>2612</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <index id="298" parent="285" name="posts_pkey">
+    <column id="308" parent="285" name="user_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>2626</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="309" parent="285" name="fk5lidm6cqbc7u4xhqpxm898qme">
+      <ColNames>user_id</ColNames>
+      <ObjectId>51539</ObjectId>
+      <StateNumber>2632</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>51502</RefTableId>
+    </foreign-key>
+    <index id="310" parent="285" name="posts_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51499</ObjectId>
@@ -4444,14 +4520,14 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="299" parent="285" name="posts_pkey">
+    <key id="311" parent="285" name="posts_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51500</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2612</StateNumber>
       <UnderlyingIndexId>51499</UnderlyingIndexId>
     </key>
-    <column id="300" parent="286" name="id">
+    <column id="312" parent="286" name="id">
       <DasType>bigint|0s</DasType>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4460,44 +4536,44 @@ false Zulu
       <SequenceId>51501</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="301" parent="286" name="birthdate">
+    <column id="313" parent="286" name="birthdate">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2613</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <column id="302" parent="286" name="email">
+    <column id="314" parent="286" name="email">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>2613</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="303" parent="286" name="name">
+    <column id="315" parent="286" name="name">
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
       <StateNumber>2613</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="304" parent="286" name="password">
+    <column id="316" parent="286" name="password">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
       <StateNumber>2613</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="305" parent="286" name="surname">
+    <column id="317" parent="286" name="surname">
       <DasType>varchar(20)|0s</DasType>
       <Position>6</Position>
       <StateNumber>2613</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="306" parent="286" name="username">
+    <column id="318" parent="286" name="username">
       <DasType>varchar(20)|0s</DasType>
       <Position>7</Position>
       <StateNumber>2613</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="307" parent="286" name="users_pkey">
+    <index id="319" parent="286" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51508</ObjectId>
@@ -4506,7 +4582,7 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="308" parent="286" name="uk_6dotkott2kjsp8vw4d0m25fb7">
+    <index id="320" parent="286" name="uk_6dotkott2kjsp8vw4d0m25fb7">
       <ColNames>email</ColNames>
       <ObjectId>51510</ObjectId>
       <StateNumber>2615</StateNumber>
@@ -4516,7 +4592,7 @@ false Zulu
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="309" parent="286" name="uk_r43af9ap4edm43mmtq01oddj6">
+    <index id="321" parent="286" name="uk_r43af9ap4edm43mmtq01oddj6">
       <ColNames>username</ColNames>
       <ObjectId>51512</ObjectId>
       <StateNumber>2617</StateNumber>
@@ -4526,19 +4602,19 @@ false Zulu
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="310" parent="286" name="users_pkey">
+    <key id="322" parent="286" name="users_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>51509</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2613</StateNumber>
       <UnderlyingIndexId>51508</UnderlyingIndexId>
     </key>
-    <key id="311" parent="286" name="uk_6dotkott2kjsp8vw4d0m25fb7">
+    <key id="323" parent="286" name="uk_6dotkott2kjsp8vw4d0m25fb7">
       <ObjectId>51511</ObjectId>
       <StateNumber>2615</StateNumber>
       <UnderlyingIndexId>51510</UnderlyingIndexId>
     </key>
-    <key id="312" parent="286" name="uk_r43af9ap4edm43mmtq01oddj6">
+    <key id="324" parent="286" name="uk_r43af9ap4edm43mmtq01oddj6">
       <ObjectId>51513</ObjectId>
       <StateNumber>2617</StateNumber>
       <UnderlyingIndexId>51512</UnderlyingIndexId>
