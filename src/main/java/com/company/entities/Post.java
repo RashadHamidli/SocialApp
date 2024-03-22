@@ -14,10 +14,17 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "post text must not be empty")
     @Column(columnDefinition = "TEXT")
     private String text;
+
     @NotNull
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime createDate;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
