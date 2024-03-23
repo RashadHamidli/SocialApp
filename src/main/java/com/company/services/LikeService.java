@@ -41,4 +41,14 @@ public class LikeService {
         Like saveLike = likeRepository.save(like);
         return LikeResponse.converteLikeToLikeResponse(saveLike);
     }
+
+    @Transactional
+    public boolean deleteLikeByLkeId(String username, Long postId, Long likeId) {
+        Like foundLike = likeRepository.findById(likeId).orElseThrow(() -> new IllegalArgumentException(STR."\{likeId}" + " is not found"));
+        if (foundLike != null && foundLike.getUser().getUsername().equals(username) && foundLike.getPost().getPostId().equals(postId)) {
+            likeRepository.delete(foundLike);
+            return true;
+        } else
+            return false;
+    }
 }

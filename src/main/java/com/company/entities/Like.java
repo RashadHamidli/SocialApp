@@ -10,7 +10,7 @@ import lombok.Data;
 public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long like_id;
+    private Long likeId;
 
     @NotNull
     @ManyToOne

@@ -13,8 +13,8 @@ public record CommentResponse(String postUsername,
     public static CommentResponse converteCommentToCommentResponse(Comment comment) {
         return new CommentResponse(comment.getPost().getUser().getUsername(),
                 comment.getUser().getUsername(),
-                comment.getPost().getPost_id(),
-                comment.getComment_id(),
+                comment.getPost().getPostId(),
+                comment.getCommentId(),
                 comment.getText(),
                 comment.getCreateDate());
     }

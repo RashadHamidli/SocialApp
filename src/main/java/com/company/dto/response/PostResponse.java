@@ -9,6 +9,6 @@ public record PostResponse(String username,
                            String text,
                            LocalDateTime createDate) {
     public static PostResponse convertePostToPostResponse(Post post){
-        return new PostResponse(post.getUser().getUsername(),post.getPost_id(),post.getText(),post.getCreateDate());
+        return new PostResponse(post.getUser().getUsername(),post.getPostId(),post.getText(),post.getCreateDate());
     }
 }

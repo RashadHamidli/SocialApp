@@ -39,7 +39,7 @@ public class PostService {
     public PostResponse updatePostByPostId(String username, Long id, PostRequest postRequest) {
         Post foundPost = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(STR."\{id}" + " is not found"));
         Post requestToPost = PostRequest.convertePostRequestToPost(postRequest);
-        if (foundPost.getUser().getUsername().equals(username)) {
+        if (foundPost != null && foundPost.getUser().getUsername().equals(username)) {
             Post post = updatePost(foundPost, requestToPost);
             return PostResponse.convertePostToPostResponse(post);
         } else
@@ -55,7 +55,7 @@ public class PostService {
     @Transactional
     public Boolean deletePostByPostId(String username, Long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(STR."\{id}" + " is not found"));
-        if(post.getUser().getUsername().equals(username)){
+        if (post != null && post.getUser().getUsername().equals(username)) {
             postRepository.delete(post);
             return true;
         } else

@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47a7e0b4-76d5-4e27-a7f2-aa60f7026cf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/LikeRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/dto/response/LikeResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/repositories/LikeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/services/LikeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/PostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/PostService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/util/CommentUtil.class" beforeDir="false" />
-    </list>
+    <list default="true" id="47a7e0b4-76d5-4e27-a7f2-aa60f7026cf4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,11 +71,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.company.dto.request" />
       <recent name="com.company.dto.response" />
       <recent name="com.company.de" />
       <recent name="com.company.repositories" />
       <recent name="com.company.services" />
-      <recent name="com.company.dto.request" />
     </key>
   </component>
   <component name="RunManager">
@@ -124,7 +115,7 @@
       <workItem from="1711123095474" duration="2811000" />
       <workItem from="1711130267253" duration="74000" />
       <workItem from="1711130379100" duration="741000" />
-      <workItem from="1711165514026" duration="18825000" />
+      <workItem from="1711165514026" duration="20279000" />
     </task>
     <servers />
   </component>

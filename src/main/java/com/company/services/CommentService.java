@@ -54,7 +54,7 @@ public class CommentService {
                                                     CommentRequest commentRequest) {
         Comment foundComment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Comment requestToComment = CommentRequest.converteCommentRequestToComment(commentRequest);
-        if (requestToComment.getUser().getUsername().equals(username) && requestToComment.getPost().getPost_id().equals(postId)) {
+        if (requestToComment != null && requestToComment.getUser().getUsername().equals(username) && requestToComment.getPost().getPostId().equals(postId)) {
             Comment comment = updateComment(foundComment, requestToComment);
             Comment savedComment = commentRepository.save(comment);
             return CommentResponse.converteCommentToCommentResponse(savedComment);
@@ -71,7 +71,7 @@ public class CommentService {
     @Transactional
     public Boolean deleteCommentByCommentId(String username, Long postId, Long commentId) {
         Comment foundComment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
-        if (foundComment.getUser().getUsername().equals(username) && foundComment.getPost().getPost_id().equals(postId)) {
+        if (foundComment != null && foundComment.getUser().getUsername().equals(username) && foundComment.getPost().getPostId().equals(postId)) {
             commentRepository.delete(foundComment);
             return true;
         }

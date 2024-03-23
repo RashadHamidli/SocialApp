@@ -6,6 +6,6 @@ public record LikeResponse(Long likeId,
                            String likedUsername,
                            String postUsername) {
     public static LikeResponse converteLikeToLikeResponse(Like like) {
-        return new LikeResponse(like.getLike_id(), like.getUser().getUsername(), like.getPost().getUser().getUsername());
+        return new LikeResponse(like.getLikeId(), like.getUser().getUsername(), like.getPost().getUser().getUsername());
     }
 }

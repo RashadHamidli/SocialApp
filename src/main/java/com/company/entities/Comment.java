@@ -14,7 +14,7 @@ import java.util.List;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long comment_id;
+    private Long commentId;
 
     @NotBlank(message = "comment text must not be empty")
     @Column(columnDefinition = "TEXT")
