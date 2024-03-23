@@ -8,6 +8,7 @@ import com.company.repositories.PostRepository;
 import com.company.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class PostService {
     private final UserRepository userRepository;
 
     public List<PostResponse> getAllPost() {
-        List<Post> all = postRepository.findAll();
+        List<Post> all = postRepository.findAll(Sort.by(Sort.Direction.DESC, "createDate"));
         return all.stream().map(PostResponse::convertePostToPostResponse).collect(Collectors.toList());
     }
 
@@ -55,7 +56,7 @@ public class PostService {
     @Transactional
     public Boolean deletePostByPostId(String username, Long id) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException(STR."\{id}" + " is not found"));
-        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(STR."\{id}" + "is not found"));
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(STR."\{id}" + " is not found"));
         if (user.equals(post.getUser())) {
             postRepository.delete(post);
             return true;
