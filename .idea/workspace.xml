@@ -5,25 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a7e0b4-76d5-4e27-a7f2-aa60f7026cf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/config/AuthenticationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cce07e09-909d-44c5-af93-8db39ee63ac3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cce07e09-909d-44c5-af93-8db39ee63ac3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cce07e09-909d-44c5-af93-8db39ee63ac3/storage_v2/_src_/database/social_app.T0LRkA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cce07e09-909d-44c5-af93-8db39ee63ac3/storage_v2/_src_/database/social_app.T0LRkA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/entities/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/entities/Like.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/LikeRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/LikeRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/dto/response/CommentResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/dto/response/CommentResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/dto/response/LikeResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/dto/response/LikeResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/dto/response/PostResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/dto/response/PostResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/entities/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/entities/Comment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/entities/Like.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/entities/Like.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/entities/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/entities/Post.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/entities/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/repositories/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/repositories/LikeRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/LikeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/PostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/PostService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/config/AuthenticationConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/config/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/security/JwtService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +120,7 @@
       <workItem from="1711123095474" duration="2811000" />
       <workItem from="1711130267253" duration="74000" />
       <workItem from="1711130379100" duration="741000" />
-      <workItem from="1711165514026" duration="23090000" />
+      <workItem from="1711165514026" duration="23405000" />
     </task>
     <servers />
   </component>
