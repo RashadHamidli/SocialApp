@@ -1,11 +1,11 @@
 package com.company.controllers;
 
-import com.company.dto.UserResponse;
+import com.company.dto.response.UserResponse;
+import com.company.dto.request.UserRequest;
 import com.company.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,8 +16,24 @@ public class UserRestController {
     private final UserService userService;
 
     @GetMapping("/all")
-    public List<UserResponse> getAllUser(){
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserResponse> getAllUser() {
         return userService.getAllUser();
+    }
+
+    @GetMapping("/{username}")
+    public UserResponse getOneUserByUsername(@PathVariable String username) {
+        return userService.getOneUserByUsername(username);
+    }
+
+    @PostMapping()
+    public UserResponse createUser(@RequestBody UserRequest userRequest) {
+        return userService.creatUser(userRequest);
+    }
+
+    @PutMapping("/{username}")
+    public UserResponse updateUser(@PathVariable String username, @RequestBody UserRequest userRequest) {
+        return userService.updateUser(username,userRequest);
     }
 
 }
