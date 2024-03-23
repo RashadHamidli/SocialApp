@@ -52,11 +52,9 @@ public class CommentService {
                                                     Long postId,
                                                     Long commentId,
                                                     CommentRequest commentRequest) {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException(STR."\{username}" + " is not found"));
-        Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Comment foundComment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Comment requestToComment = CommentRequest.converteCommentRequestToComment(commentRequest);
-        if (requestToComment.getUser().equals(user) && requestToComment.getPost().getPost_id().equals(post.getPost_id())) {
+        if (requestToComment.getUser().getUsername().equals(username) && requestToComment.getPost().getPost_id().equals(postId)) {
             Comment comment = updateComment(foundComment, requestToComment);
             Comment savedComment = commentRepository.save(comment);
             return CommentResponse.converteCommentToCommentResponse(savedComment);
@@ -68,6 +66,16 @@ public class CommentService {
     public Comment updateComment(Comment foundComment, Comment requestToComment) {
         Optional.ofNullable(requestToComment.getText()).ifPresent(foundComment::setText);
         return foundComment;
+    }
+
+    @Transactional
+    public Boolean deleteCommentByCommentId(String username, Long postId, Long commentId) {
+        Comment foundComment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
+        if (foundComment.getUser().getUsername().equals(username) && foundComment.getPost().getPost_id().equals(postId)) {
+            commentRepository.delete(foundComment);
+            return true;
+        }
+        return false;
     }
 
 }

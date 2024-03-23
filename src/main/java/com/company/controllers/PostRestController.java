@@ -41,8 +41,7 @@ public class PostRestController {
     @DeleteMapping("/{username}/{id}")
     public ResponseEntity<Object> deletePostByPostId(@PathVariable String username,
                                                      @PathVariable Long id) {
-        Boolean b = postService.deletePostByPostId(username, id);
-        if (b.equals(true))
+        if (postService.deletePostByPostId(username, id))
             return ResponseEntity.ok("this post is deleted");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("this post is not yours");

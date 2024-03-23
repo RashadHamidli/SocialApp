@@ -44,4 +44,14 @@ public class CommentRestController {
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("comment is not update");
     }
+
+    @DeleteMapping("/{username}/{postId}/{commentId}")
+    public ResponseEntity<Object> deleteCommentByCommentId(@PathVariable String username,
+                                                           @PathVariable Long postId,
+                                                           @PathVariable Long commentId) {
+        if (commentService.deleteCommentByCommentId(username, postId, commentId))
+            return ResponseEntity.ok("this comment is deleted");
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("this comment is not yours");
+    }
 }
