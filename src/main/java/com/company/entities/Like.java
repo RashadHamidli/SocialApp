@@ -17,12 +17,10 @@ public class Like {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "comment_id")
     private Comment comment;
