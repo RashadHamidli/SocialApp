@@ -13,7 +13,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
 
     @NotBlank(message = "username must not be empty")
     @Size(min = 2, max = 20, message = "required username must be min 2, max 20 character")

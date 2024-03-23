@@ -22,12 +22,15 @@ public class PostRestController {
     }
 
     @PostMapping("/{username}")
-    public PostResponse createPostByUsername(@PathVariable String username, @RequestBody PostRequest postRequest) {
+    public PostResponse createPostByUsername(@PathVariable String username,
+                                             @RequestBody PostRequest postRequest) {
         return postService.createPostByUsername(username, postRequest);
     }
 
     @PutMapping("/{username}/{id}")
-    public ResponseEntity<Object> updatePostByPostId2(@PathVariable String username, @PathVariable Long id, @RequestBody PostRequest postRequest) {
+    public ResponseEntity<Object> updatePostByPostId2(@PathVariable String username,
+                                                      @PathVariable Long id,
+                                                      @RequestBody PostRequest postRequest) {
         PostResponse postResponse = postService.updatePostByPostId(username, id, postRequest);
         if (postResponse != null)
             return ResponseEntity.ok(postResponse);
@@ -36,7 +39,8 @@ public class PostRestController {
     }
 
     @DeleteMapping("/{username}/{id}")
-    public ResponseEntity<Object> deletePostByPostId(@PathVariable String username, @PathVariable Long id) {
+    public ResponseEntity<Object> deletePostByPostId(@PathVariable String username,
+                                                     @PathVariable Long id) {
         Boolean b = postService.deletePostByPostId(username, id);
         if (b.equals(true))
             return ResponseEntity.ok("this post is deleted");

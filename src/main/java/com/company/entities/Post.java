@@ -14,7 +14,7 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long post_id;
 
     @NotBlank(message = "post text must not be empty")
     @Column(columnDefinition = "TEXT")
