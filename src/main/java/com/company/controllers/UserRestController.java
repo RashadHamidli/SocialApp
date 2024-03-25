@@ -4,6 +4,8 @@ import com.company.dto.response.UserResponse;
 import com.company.dto.request.UserRequest;
 import com.company.services.UserService;
 import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
+@Tag(name = "Clients")
 public class UserRestController {
     private final UserService userService;
 
@@ -27,9 +30,8 @@ public class UserRestController {
     }
 
     @PutMapping("/update")
-    public UserResponse updateUser(@RequestHeader(value = "Authorization") String token,
-                                   @ApiParam(value = "api param header", required = true)
-                                   @RequestBody UserRequest userRequest) {
+    @Operation(summary = "This method is used to get the clients.")
+    public UserResponse updateUser(@RequestBody UserRequest userRequest) {
         return userService.updateUser(userRequest);
     }
 
