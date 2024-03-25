@@ -20,7 +20,7 @@ public class JwtService {
     private Long EXPIRES;
 
     public String generateToken(CustomUserDetails userDetails) {
-        JWT.create()
+        return JWT.create()
                 .withIssuer(ISSUER)
                 .withSubject(userDetails.getUsername())
                 .withClaim("username", userDetails.getUsername())
@@ -30,7 +30,6 @@ public class JwtService {
                 .withJWTId(UUID.randomUUID().toString())
                 .withNotBefore(new Date(System.currentTimeMillis() + 1000L))
                 .sign(Algorithm.HMAC256(SECRET_KEY));
-        return null;
     }
 
     public DecodedJWT decodedJWT(String token) {

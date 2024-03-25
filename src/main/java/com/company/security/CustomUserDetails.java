@@ -1,11 +1,15 @@
 package com.company.security;
 
+import com.company.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+
 
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
@@ -14,9 +18,10 @@ public class CustomUserDetails implements UserDetails {
     private String email;
     private String password;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(Role.USER.name()));
     }
 
     @Override

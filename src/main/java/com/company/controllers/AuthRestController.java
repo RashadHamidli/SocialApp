@@ -18,8 +18,8 @@ public class AuthRestController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public LoginResponse register(@RequestBody UserRequest loginRequest){
-        return authenticationService.register(loginRequest);
+    public LoginResponse register(@RequestBody UserRequest userRequest){
+        return authenticationService.register(userRequest);
     }
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest){
