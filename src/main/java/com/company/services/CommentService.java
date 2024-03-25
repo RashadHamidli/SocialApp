@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.config.CustomSecurityContext;
 import com.company.dto.request.CommentRequest;
 import com.company.dto.response.CommentResponse;
 import com.company.entities.Comment;
@@ -23,6 +24,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
+    private final CustomSecurityContext securityContext;
 
     public List<CommentResponse> getAllComment() {
         List<Comment> all = commentRepository.findAll(Sort.by(Sort.Direction.DESC, "createDate"));
@@ -35,11 +37,11 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponse createComment(String username,
-                                         Long postId,
+    public CommentResponse createComment(Long postId,
                                          CommentRequest commentRequest) {
+        String context = securityContext.getSecurityContext();
         Comment requestToComment = CommentRequest.converteCommentRequestToComment(commentRequest);
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException(STR."\{username}" + " is not found"));
+        User user = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{context}" + " is not found"));
         Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         requestToComment.setUser(user);
         requestToComment.setPost(post);
@@ -48,13 +50,13 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponse updateCommentByCommentId(String username,
-                                                    Long postId,
+    public CommentResponse updateCommentByCommentId(Long postId,
                                                     Long commentId,
                                                     CommentRequest commentRequest) {
+        String context = securityContext.getSecurityContext();
         Comment foundComment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Comment requestToComment = CommentRequest.converteCommentRequestToComment(commentRequest);
-        if (requestToComment != null && requestToComment.getUser().getUsername().equals(username) && requestToComment.getPost().getPostId().equals(postId)) {
+        if (requestToComment.getUser().getUsername().equals(context) && requestToComment.getPost().getPostId().equals(postId)) {
             Comment comment = updateComment(foundComment, requestToComment);
             Comment savedComment = commentRepository.save(comment);
             return CommentResponse.converteCommentToCommentResponse(savedComment);
@@ -69,9 +71,10 @@ public class CommentService {
     }
 
     @Transactional
-    public Boolean deleteCommentByCommentId(String username, Long postId, Long commentId) {
+    public Boolean deleteCommentByCommentId(Long postId, Long commentId) {
+        String context = securityContext.getSecurityContext();
         Comment foundComment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
-        if (foundComment != null && foundComment.getUser().getUsername().equals(username) && foundComment.getPost().getPostId().equals(postId)) {
+        if (foundComment != null && foundComment.getUser().getUsername().equals(context) && foundComment.getPost().getPostId().equals(postId)) {
             commentRepository.delete(foundComment);
             return true;
         }

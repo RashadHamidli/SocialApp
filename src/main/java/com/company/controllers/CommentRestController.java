@@ -26,30 +26,27 @@ public class CommentRestController {
         return commentService.getCommentByCommentId(postId);
     }
 
-    @PostMapping("/{username}/{postId}/comment")
-    public CommentResponse createComment(@PathVariable String username,
-                                         @PathVariable Long postId,
+    @PostMapping("/{postId}/comment")
+    public CommentResponse createComment(@PathVariable Long postId,
                                          @RequestBody CommentRequest commentRequest) {
-        return commentService.createComment(username, postId, commentRequest);
+        return commentService.createComment(postId, commentRequest);
     }
 
-    @PutMapping("/{username}/{postId}/{commentId}")
-    public ResponseEntity<Object> updateCommentByCommentId(@PathVariable String username,
-                                                           @PathVariable Long postId,
+    @PutMapping("/{postId}/{commentId}")
+    public ResponseEntity<Object> updateCommentByCommentId(@PathVariable Long postId,
                                                            @PathVariable Long commentId,
                                                            @RequestBody CommentRequest commentRequest) {
-        CommentResponse commentResponse = commentService.updateCommentByCommentId(username, postId, commentId, commentRequest);
+        CommentResponse commentResponse = commentService.updateCommentByCommentId(postId, commentId, commentRequest);
         if (commentResponse != null)
             return ResponseEntity.ok(commentResponse);
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("comment is not update");
     }
 
-    @DeleteMapping("/{username}/{postId}/{commentId}")
-    public ResponseEntity<Object> deleteCommentByCommentId(@PathVariable String username,
-                                                           @PathVariable Long postId,
+    @DeleteMapping("/{postId}/{commentId}")
+    public ResponseEntity<Object> deleteCommentByCommentId(@PathVariable Long postId,
                                                            @PathVariable Long commentId) {
-        if (commentService.deleteCommentByCommentId(username, postId, commentId))
+        if (commentService.deleteCommentByCommentId(postId, commentId))
             return ResponseEntity.ok("this comment is deleted");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("this comment is not yours");

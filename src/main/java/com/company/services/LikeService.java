@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.config.CustomSecurityContext;
 import com.company.dto.response.LikeResponse;
 import com.company.entities.Like;
 import com.company.entities.Post;
@@ -20,6 +21,7 @@ public class LikeService {
     private final LikeRepository likeRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
+    private final CustomSecurityContext securityContext;
 
     public List<LikeResponse> getAllLikeByUsername(String username) {
         List<Like> likes = likeRepository.findByUserUsername(username);
@@ -32,8 +34,9 @@ public class LikeService {
     }
 
     @Transactional
-    public LikeResponse creatLike(String username, Long postId) {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
+    public LikeResponse creatLike(Long postId) {
+        String context = securityContext.getSecurityContext();
+        User user = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Like like = new Like();
         like.setUser(user);
@@ -43,9 +46,10 @@ public class LikeService {
     }
 
     @Transactional
-    public boolean deleteLikeByLkeId(String username, Long postId, Long likeId) {
+    public boolean deleteLikeByLkeId(Long postId, Long likeId) {
+        String context = securityContext.getSecurityContext();
         Like foundLike = likeRepository.findById(likeId).orElseThrow(() -> new IllegalArgumentException(STR."\{likeId}" + " is not found"));
-        if (foundLike != null && foundLike.getUser().getUsername().equals(username) && foundLike.getPost().getPostId().equals(postId)) {
+        if (foundLike != null && foundLike.getUser().getUsername().equals(context) && foundLike.getPost().getPostId().equals(postId)) {
             likeRepository.delete(foundLike);
             return true;
         } else

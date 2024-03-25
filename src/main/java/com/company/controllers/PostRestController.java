@@ -21,27 +21,24 @@ public class PostRestController {
         return postService.getAllPost();
     }
 
-    @PostMapping("/{username}")
-    public PostResponse createPostByUsername(@PathVariable String username,
-                                             @RequestBody PostRequest postRequest) {
-        return postService.createPostByUsername(username, postRequest);
+    @PostMapping("/create")
+    public PostResponse createPostByUser(@RequestBody PostRequest postRequest) {
+        return postService.createPostByUsername(postRequest);
     }
 
-    @PutMapping("/{username}/{id}")
-    public ResponseEntity<Object> updatePostByPostId2(@PathVariable String username,
-                                                      @PathVariable Long id,
-                                                      @RequestBody PostRequest postRequest) {
-        PostResponse postResponse = postService.updatePostByPostId(username, id, postRequest);
+    @PutMapping("{id}")
+    public ResponseEntity<Object> updatePostByPostId(@PathVariable Long id,
+                                                     @RequestBody PostRequest postRequest) {
+        PostResponse postResponse = postService.updatePostByPostId(id, postRequest);
         if (postResponse != null)
             return ResponseEntity.ok(postResponse);
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("post is not updated");
     }
 
-    @DeleteMapping("/{username}/{id}")
-    public ResponseEntity<Object> deletePostByPostId(@PathVariable String username,
-                                                     @PathVariable Long id) {
-        if (postService.deletePostByPostId(username, id))
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletePostByPostId(@PathVariable Long id) {
+        if (postService.deletePostByPostId(id))
             return ResponseEntity.ok("this post is deleted");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("this post is not yours");

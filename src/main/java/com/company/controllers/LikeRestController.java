@@ -20,19 +20,20 @@ public class LikeRestController {
         return likeService.getAllLikeByUsername(username);
     }
 
-    @GetMapping("/{postId}/likeId")
+    @GetMapping("/{postId}")
     public List<LikeResponse> getAllLikeByPostId(@PathVariable Long postId) {
         return likeService.getAllLikeByPostId(postId);
     }
 
-    @GetMapping("/{username}/{postId}/like")
-    public LikeResponse creatLike(@PathVariable String username, @PathVariable Long postId) {
-        return likeService.creatLike(username, postId);
+    @PostMapping("/{postId}")
+    public LikeResponse creatLike(@PathVariable Long postId) {
+        return likeService.creatLike(postId);
     }
 
-    @GetMapping("/{username}/{postId}/{likeId}")
-    public ResponseEntity<Object> deleteLikeByLikeId(@PathVariable String username, @PathVariable Long postId, @PathVariable Long likeId) {
-        if (likeService.deleteLikeByLkeId(username, postId, likeId))
+    @GetMapping("/{postId}/{likeId}")
+    public ResponseEntity<Object> deleteLikeByLikeId(@PathVariable Long postId,
+                                                     @PathVariable Long likeId) {
+        if (likeService.deleteLikeByLkeId(postId, likeId))
             return ResponseEntity.ok("unlike successfully");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("unlike error!");
