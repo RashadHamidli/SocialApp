@@ -38,12 +38,16 @@ public class User {
             message = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 digit, with a minimum length of 8 characters")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role roles;
-
     @NotNull(message = "birthdate must not be empty")
     @Column(columnDefinition = "DATE")
     private LocalDate birthdate;
+
+    @Enumerated(EnumType.STRING)
+    private Role roles;
+
+    @NotNull
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Token token;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> posts;

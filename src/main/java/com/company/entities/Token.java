@@ -15,7 +15,11 @@ public class Token {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tokenId;
     @NotBlank
+    @Column(columnDefinition = "TEXT")
     private String token;
     @NotNull
     private LocalDateTime createToke;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
