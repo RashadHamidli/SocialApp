@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a7e0b4-76d5-4e27-a7f2-aa60f7026cf4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/config/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/PostRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/PostRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/services/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/services/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/CommentRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/CommentRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/LikeRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/LikeRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/PostRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/PostRestController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/UserRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/UserRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/LikeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/PostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/PostService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +133,7 @@
       <workItem from="1711130379100" duration="741000" />
       <workItem from="1711165514026" duration="34388000" />
       <workItem from="1711270863854" duration="1129000" />
-      <workItem from="1711344379278" duration="11675000" />
+      <workItem from="1711344379278" duration="14677000" />
     </task>
     <servers />
   </component>

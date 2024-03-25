@@ -3,6 +3,7 @@ package com.company.controllers;
 import com.company.dto.response.UserResponse;
 import com.company.dto.request.UserRequest;
 import com.company.services.UserService;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,6 @@ public class UserRestController {
     private final UserService userService;
 
     @GetMapping("/all")
-    @ResponseStatus(HttpStatus.OK)
     public List<UserResponse> getAllUser() {
         return userService.getAllUser();
     }
@@ -27,7 +27,9 @@ public class UserRestController {
     }
 
     @PutMapping("/update")
-    public UserResponse updateUser(@RequestBody UserRequest userRequest) {
+    public UserResponse updateUser(@RequestHeader(value = "Authorization") String token,
+                                   @ApiParam(value = "api param header", required = true)
+                                   @RequestBody UserRequest userRequest) {
         return userService.updateUser(userRequest);
     }
 
