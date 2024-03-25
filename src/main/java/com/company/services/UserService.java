@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.config.CustomSecurityContext;
 import com.company.dto.request.UserRequest;
 import com.company.dto.response.UserResponse;
 import com.company.entities.User;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final CustomSecurityContext securityContext;
 
     public List<UserResponse> getAllUser() {
         return userRepository.findAll().stream().map(UserResponse::conveteUserToUserResponse).collect(Collectors.toList());
@@ -28,15 +30,9 @@ public class UserService {
     }
 
     @Transactional
-    public UserResponse creatUser(UserRequest userRequest) {
-        User user = UserRequest.conveteUserResponseToUser(userRequest);
-        User savedUser = userRepository.save(user);
-        return UserResponse.conveteUserToUserResponse(savedUser);
-    }
-
-    @Transactional
-    public UserResponse updateUser(String username, UserRequest userRequest) {
-        User foundUser = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException(STR."\{username} is not fine"));
+    public UserResponse updateUser(UserRequest userRequest) {
+        String context = securityContext.getSecurityContext();
+        User foundUser = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{context} is not find"));
         User requestUser = UserRequest.conveteUserResponseToUser(userRequest);
         User user = updateUser(foundUser, requestUser);
         return UserResponse.conveteUserToUserResponse(user);

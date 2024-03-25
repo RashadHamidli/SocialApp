@@ -26,15 +26,9 @@ public class UserRestController {
         return userService.getOneUserByUsername(username);
     }
 
-    @PostMapping()
-    public UserResponse createUser(@RequestBody UserRequest userRequest) {
-        return userService.creatUser(userRequest);
-    }
-
-    @PutMapping("/{username}")
-    public UserResponse updateUser(@PathVariable String username,
-                                   @RequestBody UserRequest userRequest) {
-        return userService.updateUser(username,userRequest);
+    @PutMapping("/update")
+    public UserResponse updateUser(@RequestBody UserRequest userRequest) {
+        return userService.updateUser(userRequest);
     }
 
 }

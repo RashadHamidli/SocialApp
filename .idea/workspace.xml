@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a7e0b4-76d5-4e27-a7f2-aa60f7026cf4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/config/CustomSecurityContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/company/dto/request/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/AuthRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/dto/request/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/dto/request/UserRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/company/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/services/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/entities/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/entities/Token.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/entities/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +86,9 @@
       <recent name="com.company.dto.response" />
       <recent name="com.company.de" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.company.dto.request" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Launcher" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -128,7 +129,7 @@
       <workItem from="1711130379100" duration="741000" />
       <workItem from="1711165514026" duration="34388000" />
       <workItem from="1711270863854" duration="1129000" />
-      <workItem from="1711344379278" duration="10056000" />
+      <workItem from="1711344379278" duration="11183000" />
     </task>
     <servers />
   </component>

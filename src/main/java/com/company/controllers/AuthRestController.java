@@ -1,6 +1,7 @@
 package com.company.controllers;
 
 import com.company.dto.request.LoginRequest;
+import com.company.dto.request.RegisterRequest;
 import com.company.dto.request.UserRequest;
 import com.company.dto.response.LoginResponse;
 import com.company.services.AuthenticationService;
@@ -18,8 +19,8 @@ public class AuthRestController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public LoginResponse register(@RequestBody UserRequest userRequest){
-        return authenticationService.register(userRequest);
+    public LoginResponse register(@RequestBody RegisterRequest registerRequest){
+        return authenticationService.register(registerRequest);
     }
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest){

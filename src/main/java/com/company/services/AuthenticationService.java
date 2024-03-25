@@ -2,6 +2,7 @@ package com.company.services;
 
 import com.company.config.CustomSecurityContext;
 import com.company.dto.request.LoginRequest;
+import com.company.dto.request.RegisterRequest;
 import com.company.dto.request.UserRequest;
 import com.company.dto.response.LoginResponse;
 import com.company.entities.Role;
@@ -31,8 +32,8 @@ public class AuthenticationService {
     private final CustomSecurityContext securityContext;
 
     @Transactional
-    public LoginResponse register(UserRequest userRequest) {
-        User user = UserRequest.conveteUserResponseToUser(userRequest);
+    public LoginResponse register(RegisterRequest registerRequest) {
+        User user = RegisterRequest.conveteUserResponseToUser(registerRequest);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Role.USER);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
@@ -47,12 +48,12 @@ public class AuthenticationService {
         String login = null;
         if (loginRequest.username() != null)
             login = loginRequest.username();
-        if (loginRequest.email() != null)
+        else if (loginRequest.email() != null)
             login = loginRequest.email();
         Authentication authenticate = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(login, loginRequest.password()));
         User user = userRepository.findByUsernameOrEmail(loginRequest.username(), loginRequest.email()).orElseThrow(
-                () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + "username or email not found"));
+                () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + " username or email not found"));
         securityContext.setSecurityContext(authenticate);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
         System.out.println(userDetails.getUsername());
