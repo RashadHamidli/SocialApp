@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.config.CustomSecurityContext;
 import com.company.dto.request.LoginRequest;
 import com.company.dto.request.UserRequest;
 import com.company.dto.response.LoginResponse;
@@ -27,6 +28,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenService jwtTokenService;
+    private final CustomSecurityContext securityContext;
 
     @Transactional
     public LoginResponse register(UserRequest userRequest) {
@@ -34,11 +36,10 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Role.USER);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
-        String generateToken = jwtService.generateToken(userDetails);
-        user.getToken().setToken(generateToken);
+        String token = jwtService.generateToken(userDetails);
         User saveUser = userRepository.save(user);
-        jwtTokenService.tokenSave(generateToken, saveUser);
-        return new LoginResponse(generateToken);
+        jwtTokenService.tokenSave(token, saveUser);
+        return new LoginResponse(token);
     }
 
     @Transactional
@@ -52,12 +53,10 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(login, loginRequest.password()));
         User user = userRepository.findByUsernameOrEmail(loginRequest.username(), loginRequest.email()).orElseThrow(
                 () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + "username or email not found"));
-        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        securityContext.setSecurityContext(authenticate);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
         System.out.println(userDetails.getUsername());
         String token = jwtService.generateToken(userDetails);
-        System.out.println(token);
-        System.out.println(authenticate.getName());
         return new LoginResponse(token);
     }
 }

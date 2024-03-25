@@ -45,7 +45,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role roles;
 
-    @NotNull
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Token token;
 
