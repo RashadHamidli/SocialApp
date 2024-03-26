@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
-@Tag(name = "Clients")
 public class UserRestController {
     private final UserService userService;
 
@@ -30,7 +29,6 @@ public class UserRestController {
     }
 
     @PutMapping("/update")
-    @Operation(summary = "This method is used to get the clients.")
     public UserResponse updateUser(@RequestBody UserRequest userRequest) {
         return userService.updateUser(userRequest);
     }
