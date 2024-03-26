@@ -3,11 +3,7 @@ package com.company.controllers;
 import com.company.dto.response.UserResponse;
 import com.company.dto.request.UserRequest;
 import com.company.services.UserService;
-import io.swagger.annotations.ApiParam;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
