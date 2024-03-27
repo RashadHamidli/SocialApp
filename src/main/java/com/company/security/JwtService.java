@@ -18,10 +18,18 @@ public class JwtService {
     private String SECRET_KEY;
     @Value("${my_social_app_issuer}")
     private String ISSUER;
-    @Value("${my_social_app_expires}")
-    private Long EXPIRES;
+    @Value("${my_social_app_expires_generate}")
+    private Long EXPIRES_GENERATE;
+    @Value("${my_social_app_expires_refresh}")
+    private Long EXPIRES_REFRESH;
 
-    public String generateToken(CustomUserDetails userDetails) {
+    public String generateToken(CustomUserDetails userDetails){
+        return generateTokenService(userDetails, EXPIRES_GENERATE);
+    }
+    public String refreshToken(CustomUserDetails userDetails){
+        return generateTokenService(userDetails, EXPIRES_REFRESH);
+    }
+    private String generateTokenService(CustomUserDetails userDetails, Long EXPIRES) {
         return JWT.create()
                 .withIssuer(ISSUER)
                 .withSubject(userDetails.getUsername())
@@ -32,10 +40,6 @@ public class JwtService {
                 .withJWTId(UUID.randomUUID().toString())
                 .withNotBefore(new Date(System.currentTimeMillis() + 1000L))
                 .sign(Algorithm.HMAC256(SECRET_KEY));
-    }
-    public DecodedJWT refreshJWT(String token){
-        Map<String, Claim> claims = JWT.decode(token).getClaims();
-        return  null;
     }
 
     public DecodedJWT decodedJWT(String token) {

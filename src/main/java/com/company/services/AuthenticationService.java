@@ -38,9 +38,8 @@ public class AuthenticationService {
         user.setRoles(Role.USER);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
         String token = jwtService.generateToken(userDetails);
-        User saveUser = userRepository.save(user);
-        jwtTokenService.tokenSave(token, saveUser);
-        return new LoginResponse(token);
+        userRepository.save(user);
+        return new LoginResponse(token, null);
     }
 
     @Transactional
@@ -56,8 +55,9 @@ public class AuthenticationService {
                 () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + " username or email not found"));
         securityContext.setSecurityContext(authenticate);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
-        String token = jwtService.generateToken(userDetails);
-        jwtTokenService.tokenSave(token, user);
-        return new LoginResponse(token);
+        String accessToken = jwtService.generateToken(userDetails);
+        String refreshToken = jwtService.refreshToken(userDetails);
+        jwtTokenService.tokenSave(refreshToken, user);
+        return new LoginResponse(accessToken, refreshToken);
     }
 }
