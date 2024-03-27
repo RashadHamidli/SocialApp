@@ -56,8 +56,8 @@ public class AuthenticationService {
                 () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + " username or email not found"));
         securityContext.setSecurityContext(authenticate);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
-        System.out.println(userDetails.getUsername());
         String token = jwtService.generateToken(userDetails);
+        jwtTokenService.tokenSave(token, user);
         return new LoginResponse(token);
     }
 }

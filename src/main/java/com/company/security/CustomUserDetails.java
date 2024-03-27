@@ -1,6 +1,7 @@
 package com.company.security;
 
 import com.company.entities.Role;
+import com.company.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,11 +18,12 @@ public class CustomUserDetails implements UserDetails {
     @Getter
     private String email;
     private String password;
+    private Collection<? extends GrantedAuthority> authorities;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(Role.USER.name()));
+        return List.of(new SimpleGrantedAuthority(new User().getRoles().name()));
     }
 
     @Override

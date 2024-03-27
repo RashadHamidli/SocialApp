@@ -3,11 +3,13 @@ package com.company.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -30,6 +32,10 @@ public class JwtService {
                 .withJWTId(UUID.randomUUID().toString())
                 .withNotBefore(new Date(System.currentTimeMillis() + 1000L))
                 .sign(Algorithm.HMAC256(SECRET_KEY));
+    }
+    public DecodedJWT refreshJWT(String token){
+        Map<String, Claim> claims = JWT.decode(token).getClaims();
+        return  null;
     }
 
     public DecodedJWT decodedJWT(String token) {
