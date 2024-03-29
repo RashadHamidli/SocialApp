@@ -23,7 +23,10 @@ public class UserRestController {
     public UserResponse getOneUserByUsername(@PathVariable String username) {
         return userService.getOneUserByUsername(username);
     }
-
+    @GetMapping("/profile")
+    public UserResponse getProfileByUsername() {
+        return userService.getProfileByUsername();
+    }
     @PutMapping("/update")
     public UserResponse updateUser(@RequestBody UserRequest userRequest) {
         return userService.updateUser(userRequest);

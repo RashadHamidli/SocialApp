@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class JwtTokenService {
+public class RefreshTokenService {
     private final TokenRepository tokenRepository;
 
     @Transactional
     public Token tokenSave(String newToken, User user) {
         Token token = new Token();
-        token.setUser(user);
+        token.setTokenId(user.getUserId());
         token.setToken(newToken);
         token.setCreateToke(LocalDateTime.now());
         return tokenRepository.save(token);

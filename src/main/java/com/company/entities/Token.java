@@ -19,7 +19,7 @@ public class Token {
     private String token;
     @NotNull
     private LocalDateTime createToke;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
 }

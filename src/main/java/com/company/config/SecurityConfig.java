@@ -29,11 +29,11 @@ public class SecurityConfig {
                         .loginProcessingUrl("/perform_login")
                         .defaultSuccessUrl("/api/posts/all")
                         .failureUrl("/login.html?error=true"))
-                .logout(logout -> logout
-                        .logoutUrl("/auth/logout")
-                        .logoutSuccessUrl("/auth/login")
-                        .deleteCookies("JSESSIONID")
-                        .invalidateHttpSession(true))
+//                .logout(logout -> logout
+//                        .logoutUrl("/auth/logout")
+//                        .logoutSuccessUrl("/auth/login")
+//                        .deleteCookies("JSESSIONID")
+//                        .invalidateHttpSession(true))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                         .maximumSessions(1))

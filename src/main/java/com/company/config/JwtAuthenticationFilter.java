@@ -2,7 +2,7 @@ package com.company.config;
 
 import com.company.security.CustomUserDetails;
 import com.company.security.CustomUserDetailsService;
-import com.company.security.JwtService;
+import com.company.security.JwtTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final JwtService jwtService;
+    private final JwtTokenService jwtTokenService;
     private final CustomUserDetailsService userDetailsService;
 
     @Override
@@ -34,10 +34,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         token = header.substring(7);
-        subject = jwtService.decodedJWT(token).getSubject();
+        subject = jwtTokenService.decodedJWT(token).getSubject();
         if (subject != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(subject);
-            if (jwtService.validToken(token)) {
+            if (jwtTokenService.validToken(token)) {
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

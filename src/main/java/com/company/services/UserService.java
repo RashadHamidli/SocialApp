@@ -45,4 +45,11 @@ public class UserService {
         Optional.ofNullable(requestUser.getBirthdate()).ifPresent(foundUser::setBirthdate);
         return foundUser;
     }
+
+    @Transactional
+    public UserResponse getProfileByUsername() {
+        String context = securityContext.getSecurityContext();
+        User user = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{context} is not find"));
+        return UserResponse.conveteUserToUserResponse(user);
+    }
 }

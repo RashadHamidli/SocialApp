@@ -3,21 +3,22 @@ package com.company.services;
 import com.company.config.CustomSecurityContext;
 import com.company.dto.request.LoginRequest;
 import com.company.dto.request.RegisterRequest;
-import com.company.dto.request.UserRequest;
+import com.company.dto.request.TokenRequest;
 import com.company.dto.response.LoginResponse;
 import com.company.entities.Role;
 import com.company.entities.Token;
 import com.company.entities.User;
+import com.company.repositories.TokenRepository;
 import com.company.repositories.UserRepository;
 import com.company.security.CustomUserDetails;
-import com.company.security.JwtService;
+import com.company.security.JwtTokenService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository userRepository;
-    private final JwtService jwtService;
+    private final JwtTokenService jwtTokenService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenService jwtTokenService;
+    private final RefreshTokenService refreshTokenService;
     private final CustomSecurityContext securityContext;
+    private final TokenRepository tokenRepository;
 
     @Transactional
     public LoginResponse register(RegisterRequest registerRequest) {
@@ -37,7 +39,7 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Role.USER);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
-        String token = jwtService.generateToken(userDetails);
+        String token = jwtTokenService.generateAccessToken(userDetails);
         userRepository.save(user);
         return new LoginResponse(token, null);
     }
@@ -55,9 +57,26 @@ public class AuthenticationService {
                 () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + " username or email not found"));
         securityContext.setSecurityContext(authenticate);
         CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
-        String accessToken = jwtService.generateToken(userDetails);
-        String refreshToken = jwtService.refreshToken(userDetails);
-        jwtTokenService.tokenSave(refreshToken, user);
+        String accessToken = jwtTokenService.generateAccessToken(userDetails);
+        String refreshToken = jwtTokenService.refreshToken(userDetails);
+        refreshTokenService.tokenSave(refreshToken, user);
         return new LoginResponse(accessToken, refreshToken);
+    }
+
+    @Transactional
+    public LoginResponse refresh(TokenRequest tokenRequest) {
+        Token token = tokenRepository.findByToken(tokenRequest).orElseThrow(() -> new IllegalArgumentException(STR."\{tokenRequest}" + " is not find"));
+        User user = userRepository.findById(token.getUser().getUserId()).orElseThrow();
+        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
+        String accessToken = jwtTokenService.generateAccessToken(userDetails);
+        return new LoginResponse(accessToken, null);
+    }
+
+    @Transactional
+    public String logout() {
+        String context = securityContext.getSecurityContext();
+        User user = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{context} is not find"));
+        System.out.println(user.getToken());
+        return "success delete refresh token";
     }
 }
