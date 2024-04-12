@@ -22,7 +22,7 @@ public class CommentRestController {
     }
 
     @GetMapping("/{postId}/comments")
-    public CommentResponse getCommentByCommentId(@PathVariable Long postId) {
+    public List<CommentResponse> getCommentByCommentId(@PathVariable Long postId) {
         return commentService.getCommentByCommentId(postId);
     }
 

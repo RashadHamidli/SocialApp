@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a7e0b4-76d5-4e27-a7f2-aa60f7026cf4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cce07e09-909d-44c5-af93-8db39ee63ac3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cce07e09-909d-44c5-af93-8db39ee63ac3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/LikeRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/LikeRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/PostRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/PostRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/services/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/services/LikeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/PostRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/PostRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/controllers/CommentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/controllers/CommentRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/repositories/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/repositories/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/company/services/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/services/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/controllers/LikeRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/controllers/LikeRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/repositories/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/repositories/LikeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/CommentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/company/services/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/services/LikeService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +198,7 @@
       <workItem from="1712726321236" duration="111000" />
       <workItem from="1712754475320" duration="633000" />
       <workItem from="1712762295521" duration="1000000" />
-      <workItem from="1712904941035" duration="379000" />
+      <workItem from="1712904941035" duration="2557000" />
     </task>
     <servers />
   </component>

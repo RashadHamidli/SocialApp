@@ -31,9 +31,10 @@ public class CommentService {
         return all.stream().map(CommentResponse::converteCommentToCommentResponse).collect(Collectors.toList());
     }
 
-    public CommentResponse getCommentByCommentId(Long postId) {
-        Comment foundComment = commentRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
-        return CommentResponse.converteCommentToCommentResponse(foundComment);
+    public List<CommentResponse> getCommentByCommentId(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
+        List<Comment> comments = commentRepository.findByPost(post);
+        return comments.stream().map(CommentResponse::converteCommentToCommentResponse).collect(Collectors.toList());
     }
 
     @Transactional
@@ -46,6 +47,7 @@ public class CommentService {
         requestToComment.setUser(user);
         requestToComment.setPost(post);
         Comment savedComment = commentRepository.save(requestToComment);
+
         return CommentResponse.converteCommentToCommentResponse(savedComment);
     }
 
