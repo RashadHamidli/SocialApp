@@ -37,7 +37,7 @@ public class PostRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePostByPostId(@PathVariable Long id) {
+    public ResponseEntity<String> deletePostByPostId(@PathVariable Long id) {
         if (postService.deletePostByPostId(id))
             return ResponseEntity.ok("this post is deleted");
         else

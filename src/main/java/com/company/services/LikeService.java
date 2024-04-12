@@ -34,7 +34,7 @@ public class LikeService {
     }
 
     @Transactional
-    public LikeResponse creatLike(Long postId) {
+    public LikeResponse creatLikeByPostId(Long postId) {
         String context = securityContext.getSecurityContext();
         User user = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
         Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
@@ -46,7 +46,7 @@ public class LikeService {
     }
 
     @Transactional
-    public boolean deleteLikeByLkeId(Long postId, Long likeId) {
+    public boolean deleteLikeByPostId(Long postId, Long likeId) {
         String context = securityContext.getSecurityContext();
         Like foundLike = likeRepository.findById(likeId).orElseThrow(() -> new IllegalArgumentException(STR."\{likeId}" + " is not found"));
         if (foundLike != null && foundLike.getUser().getUsername().equals(context) && foundLike.getPost().getPostId().equals(postId)) {
