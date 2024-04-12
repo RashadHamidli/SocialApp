@@ -60,7 +60,12 @@ public class LikeService {
         String context = securityContext.getSecurityContext();
         User user = userRepository.findByUsername(context).orElseThrow(() -> new IllegalArgumentException(STR."\{context}" + " is not found"));
         Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException(STR."\{commentId} is not found"));
-        return null;
+        Like like = new Like();
+        like.setUser(user);
+        like.setPost(comment.getPost());
+        like.setComment(comment);
+        Like savedLike = likeRepository.save(like);
+        return LikeResponse.converteLikeToLikeResponse(savedLike);
     }
 
     @Transactional
@@ -75,7 +80,13 @@ public class LikeService {
     }
 
 
-    public boolean deleteLikeByCommentId(Long postId, Long likeId) {
-        return false;
+    public boolean deleteLikeByCommentId(Long commentId, Long likeId) {
+        String context = securityContext.getSecurityContext();
+        Like foundLike = likeRepository.findById(likeId).orElseThrow(() -> new IllegalArgumentException(STR."\{likeId}" + " is not found"));
+        if (foundLike != null && foundLike.getUser().getUsername().equals(context) && foundLike.getPost().getPostId().equals(commentId)) {
+            likeRepository.delete(foundLike);
+            return true;
+        } else
+            return false;
     }
 }

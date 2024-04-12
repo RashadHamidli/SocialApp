@@ -48,10 +48,11 @@ public class LikeRestController {
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("unlike error!");
     }
+
     @DeleteMapping("/{commentId}/{likeId}")
-    public ResponseEntity<Object> deleteLikeByCommentId(@PathVariable Long postId,
-                                                     @PathVariable Long likeId) {
-        if (likeService.deleteLikeByCommentId(postId, likeId))
+    public ResponseEntity<Object> deleteLikeByCommentId(@PathVariable Long commentId,
+                                                        @PathVariable Long likeId) {
+        if (likeService.deleteLikeByCommentId(commentId, likeId))
             return ResponseEntity.ok("unlike successfully");
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("unlike error!");
