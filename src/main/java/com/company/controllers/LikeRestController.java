@@ -15,32 +15,32 @@ import java.util.List;
 public class LikeRestController {
     private final LikeService likeService;
 
-    @GetMapping("/{username}/likes")
+    @GetMapping("/user/{username}")
     public List<LikeResponse> getAllLikeByUsername(@PathVariable String username) {
         return likeService.getAllLikeByUsername(username);
     }
 
-    @GetMapping("/{postId}/likes")
+    @GetMapping("/Post/{postId}")
     public List<LikeResponse> getAllLikeByPostId(@PathVariable Long postId) {
         return likeService.getAllLikeByPostId(postId);
     }
 
-    @GetMapping("/{commentId}/likes")
+    @GetMapping("/Comment/{commentId}")
     public List<LikeResponse> getAllLikeByCommentId(@PathVariable Long commentId) {
         return likeService.getAllLikeByCommentId(commentId);
     }
 
-    @PostMapping("/{postId}/likes")
+    @PostMapping("/post/{postId}")
     public LikeResponse creatLikeByPostId(@PathVariable Long postId) {
         return likeService.creatLikeByPostId(postId);
     }
 
-    @PostMapping("/{commentId}/likes")
+    @PostMapping("/comment/{commentId}")
     public LikeResponse creatLikeByCommentId(@PathVariable Long commentId) {
         return likeService.creatLikeByCommentId(commentId);
     }
 
-    @DeleteMapping("/{postId}/{likeId}")
+    @DeleteMapping("/post/{postId}/{likeId}")
     public ResponseEntity<Object> deleteLikeByPostId(@PathVariable Long postId,
                                                      @PathVariable Long likeId) {
         if (likeService.deleteLikeByPostId(postId, likeId))
@@ -49,7 +49,7 @@ public class LikeRestController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("unlike error!");
     }
 
-    @DeleteMapping("/{commentId}/{likeId}")
+    @DeleteMapping("/comment/{commentId}/{likeId}")
     public ResponseEntity<Object> deleteLikeByCommentId(@PathVariable Long commentId,
                                                         @PathVariable Long likeId) {
         if (likeService.deleteLikeByCommentId(commentId, likeId))

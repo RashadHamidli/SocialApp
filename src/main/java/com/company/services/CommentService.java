@@ -33,7 +33,7 @@ public class CommentService {
 
     public List<CommentResponse> getCommentByCommentId(Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException(STR."\{postId}" + " is not found"));
-        List<Comment> comments = commentRepository.findByPost(post);
+        List<Comment> comments = commentRepository.findByPostOrderByCreateDateDesc(post);
         return comments.stream().map(CommentResponse::converteCommentToCommentResponse).collect(Collectors.toList());
     }
 
