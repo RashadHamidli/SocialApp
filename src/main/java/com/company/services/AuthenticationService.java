@@ -38,7 +38,7 @@ public class AuthenticationService {
         User user = RegisterRequest.conveteUserResponseToUser(registerRequest);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Role.USER);
-        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
+        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), true, true, true, true);
         String token = jwtTokenService.generateAccessToken(userDetails);
         userRepository.save(user);
         return new LoginResponse(token, null);
@@ -56,7 +56,7 @@ public class AuthenticationService {
         User user = userRepository.findByUsernameOrEmail(loginRequest.username(), loginRequest.email()).orElseThrow(
                 () -> new IllegalArgumentException(STR."\{loginRequest.email()}" + STR."\{loginRequest.username()}" + " username or email not found"));
         securityContext.setSecurityContext(authenticate);
-        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
+        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), true, true, true, true);
         String accessToken = jwtTokenService.generateAccessToken(userDetails);
         String refreshToken = jwtTokenService.refreshToken(userDetails);
         refreshTokenService.tokenSave(refreshToken, user);
@@ -67,7 +67,7 @@ public class AuthenticationService {
     public LoginResponse refresh(TokenRequest tokenRequest) {
         Token token = tokenRepository.findByToken(tokenRequest).orElseThrow(() -> new IllegalArgumentException(STR."\{tokenRequest}" + " is not find"));
         User user = userRepository.findById(token.getUser().getUserId()).orElseThrow();
-        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
+        CustomUserDetails userDetails = new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), true, true, true, true);
         String accessToken = jwtTokenService.generateAccessToken(userDetails);
         return new LoginResponse(accessToken, null);
     }

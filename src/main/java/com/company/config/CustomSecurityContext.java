@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomSecurityContext {
+
     public void setSecurityContext(Authentication authentication) {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }

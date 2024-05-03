@@ -17,6 +17,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsernameOrEmail(username, username)
                 .orElseThrow(() -> new IllegalArgumentException(STR."\{username}" + " is not found"));
-        return new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword());
+        boolean enabled = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+
+        return new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked);
     }
 }
